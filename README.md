@@ -5,7 +5,12 @@ Steps to make gpib work in linux os.
 
 ## gpib-usb driver 
 
-automake fxload
+driver download link:
+https://linux-gpib.sourceforge.io/
+
+to remember...
+- automake
+- fxload
 
 
 
