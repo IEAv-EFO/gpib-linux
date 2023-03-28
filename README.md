@@ -20,5 +20,3 @@ to remember...
 - install pyserial: `python -m pip install pyserial`
 - install pyusb:`python -m pip install pyusb`
 - install linux-gpib or gpib-ctypes `python -m pip install gpib-ctypes`
-
-
