@@ -11,10 +11,4 @@ Run the script [install_gpib.sh](install_gpib.sh) to install drivers and if your
 
 ### How to use
 
-After the driver installation is completed, one can communicate with the instruments from the linux terminal by using `ibtest`.
-
-Most likely the pyvisa will be used, then you must install the correct dependencies as follows:
-- install pyvisa: `python -m pip install pyvisa`
-- install pyserial: `python -m pip install pyserial`
-- install pyusb:`python -m pip install pyusb`
-- install linux-gpib or gpib-ctypes `python -m pip install gpib-ctypes`
+After the driver installation is completed, one can communicate with the instruments from the linux terminal by using `ibtest` or any visa communication library such as `pyvisa`.
