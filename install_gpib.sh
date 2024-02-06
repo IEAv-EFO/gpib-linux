@@ -17,26 +17,28 @@ pip install pyserial -U
 pip install pyvisa -U
 pip install pyvisa-py -U
 
-echo "download linux-gpib"
-# wget https://sourceforge.net/projects/linux-gpib/files/linux-gpib%20for%203.x.x%20and%202.6.x%20kernels/4.3.5/linux-gpib-4.3.5.tar.gz
+# echo "download linux-gpib"
+# wget https://sourceforge.net/projects/linux-gpib/files/linux-gpib%20for%203.x.x%20and%202.6.x%20kernels/4.3.6/linux-gpib-4.3.6.tar.gz
 echo "unpack"
 
 tar -xvf *.tar.gz
-cd linux-gpib-4.3.5
-tar -xvf linux-gpib-user-4.3.5.tar.gz
-tar -xvf linux-gpib-kernel-4.3.5.tar.gz
+cd linux-gpib-4.3.6
+tar -xvf linux-gpib-user-4.3.6.tar.gz
+tar -xvf linux-gpib-kernel-4.3.6.tar.gz
 
-cd linux-gpib-kernel-4.3.5
+cd linux-gpib-kernel-4.3.6
 make
 sudo make install
 kernel=$(uname -r)
 
 cd ../..
 
-cd "linux-gpib-4.3.5/linux-gpib-user-4.3.5/"
+cd "linux-gpib-4.3.6/linux-gpib-user-4.3.6/"
 ./bootstrap
 ./configure --sysconfdir=/etc
 sudo make install
+
+cd ../../
 
 ls -a /etc/udev/rules.d
 echo "edit the /etc/udev/rules.d/98-gpib-generic.rules file. Put the correct user on GROUP"
@@ -45,7 +47,9 @@ sudo gedit /etc/udev/rules.d/98-gpib-generic.rules
 
 echo "Install the Agilent 82357B firmware in the right location"
 # wget --content-disposition --no-check-certificate http://linux-gpib.sourceforge.net/firmware/gpib_firmware-2008-08-10.tar.gz
-tar xvfz gpib_firmware-2008-08-10.tar.gz
-cd ../../
+# tar -xvf gpib_firmware-2008-08-10.tar.gz
+
 cd gpib_firmware-2008-08-10
 sudo cp -r * /usr/local/share/usb
+
+cd ../..

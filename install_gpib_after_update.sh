@@ -11,9 +11,11 @@
 
 
 
-cd linux-gpib-4.3.5/linux-gpib-kernel-4.3.5
+# cd linux-gpib-4.3.5/linux-gpib-kernel-4.3.5
+cd linux-gpib-4.3.6/linux-gpib-kernel-4.3.6
 make
 sudo make install
 kernel=$(uname -r)
 
+sudo modprobe agilent_82375a
 sudo modprobe agilent_82350b
