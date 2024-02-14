@@ -15,7 +15,7 @@ After the driver installation is completed, one can communicate with the instrum
 
 # Potential problems at the time of installation
 ## gpib.conf not find libgpib.so.0"
-the solution it is create a symbolic link whith:
+the [solution](https://gist.github.com/turingbirds/6eb05c9267a6437183a9567700e8581a) it is create a symbolic link whith:
 ```
 sudo ln -s /usr/local/lib/libgpib.so.0 /lib/libgpib.so.0"
 sudo gpib_config
