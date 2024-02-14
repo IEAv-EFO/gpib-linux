@@ -21,13 +21,13 @@ pip install pyvisa-py -U
 # wget https://sourceforge.net/projects/linux-gpib/files/linux-gpib%20for%203.x.x%20and%202.6.x%20kernels/4.3.6/linux-gpib-4.3.6.tar.gz
 echo "unpack"
 
-tar -xvf *.tar.gz
+tar -xvf linux-gpib-4.3.6.tar.gz
 cd linux-gpib-4.3.6
 tar -xvf linux-gpib-user-4.3.6.tar.gz
 tar -xvf linux-gpib-kernel-4.3.6.tar.gz
 
 cd linux-gpib-kernel-4.3.6
-make
+make 
 sudo make install
 kernel=$(uname -r)
 
@@ -52,4 +52,27 @@ echo "Install the Agilent 82357B firmware in the right location"
 cd gpib_firmware-2008-08-10
 sudo cp -r * /usr/local/share/usb
 
+
+
+
+tar xvfz fxload-2008_10_13.tar.gz
+cd fxload-2008_10_13
+make
+sudo make install
+cd ..
+
+
+echo "modify board type on /etc/gpib.config file to 
+    interface {
+  minor = 0   /* board index, minor = 0 uses /dev/gpib0, minor = 1 uses /dev/gpib1, etc. */
+  board_type = "agilent_82357a"   /* type of interface board being used */
+  ..." 
+sudo gedit /etc/gpib.conf
+
+
 cd ../..
+sudo modprobe gpib_common
+sudo modprobe agilent_82357a
+
+echo "Installing the dong. Note, gpib_config dont find libgpib.so.0 file you can run: sudo ln -s /usr/local/lib/libgpib.so.0 /lib/libgpib.so.0"
+sudo gpib_config
